@@ -7,7 +7,7 @@
   <style>
     body {
       margin: 0;
-      font-family: "Courier New", monospace;
+      font-family: Arial, sans-serif;
       background: radial-gradient(circle at center, #1a0000, #000000);
       color: #f1f5f9;
       display: flex;
@@ -24,44 +24,42 @@
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid #7f1d1d;
       border-radius: 16px;
-      box-shadow: 0 0 40px rgba(255, 0, 0, 0.4);
+      box-shadow: 0 0 40px rgba(255, 0, 0, 0.25);
+      animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { box-shadow: 0 0 20px rgba(255,0,0,0.2); }
+      to { box-shadow: 0 0 50px rgba(255,0,0,0.6); }
     }
 
     h1 {
-      font-size: 28px;
-      color: #ef4444;
+      font-size: 30px;
       margin-bottom: 20px;
-      min-height: 40px;
+      color: #ef4444;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .warning {
+      font-size: 14px;
+      color: #f87171;
+      margin-bottom: 15px;
     }
 
     p {
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.6;
-      text-align: left;
-      min-height: 120px;
+      margin-bottom: 20px;
     }
 
     .signature {
       margin-top: 30px;
       font-weight: bold;
       color: #94a3b8;
-      opacity: 0;
-      transition: opacity 1s ease;
     }
 
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      background: #ef4444;
-      margin-left: 3px;
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0; }
-    }
-
+    /* эффект "сканирования" */
     .scan {
       position: absolute;
       width: 100%;
@@ -78,43 +76,21 @@
 </head>
 <body>
 
-<div class="scan"></div>
+  <div class="scan"></div>
 
-<div class="container">
-  <h1 id="title"></h1>
-  <p id="text"></p>
-  <div class="signature" id="sign">Ваш Дима</div>
-</div>
+  <div class="container">
+    <div class="warning">⚠ ВНИМАНИЕ: возможная угроза безопасности</div>
 
-<script>
-const titleText = "А если бы вас взломали?";
-const mainText = "Дорогие мои родственники, перед тем как заходить на непонятные сайты убедитесь, что ссылку вам отправил не мошенник. В наше время злоумышленники очень хорошо маскируются под знакомых людей, банки и даже государственные сервисы. Достаточно одного неосторожного клика, чтобы потерять доступ к аккаунтам, личным данным или даже деньгам. Всегда проверяйте адрес сайта, не вводите пароли на подозрительных страницах и не переходите по ссылкам из странных сообщений. Лучше лишний раз спросить и убедиться, чем потом восстанавливать доступ и переживать из-за последствий.";
+    <h1>А если бы вас взломали?</h1>
+    
+    <p>
+      Дорогие мои родственники, перед тем как заходить на непонятные сайты убедитесь, что ссылку вам отправил не мошенник. В наше время злоумышленники очень хорошо маскируются под знакомых людей, банки и даже государственные сервисы. Достаточно одного неосторожного клика, чтобы потерять доступ к аккаунтам, личным данным или даже деньгам. Всегда проверяйте адрес сайта, не вводите пароли на подозрительных страницах и не переходите по ссылкам из странных сообщений. Лучше лишний раз спросить и убедиться, чем потом восстанавливать доступ и переживать из-за последствий.
+    </p>
 
-let i = 0;
-let j = 0;
-
-function typeTitle() {
-  if (i < titleText.length) {
-    document.getElementById("title").innerHTML += titleText.charAt(i);
-    i++;
-    setTimeout(typeTitle, 50);
-  } else {
-    typeText();
-  }
-}
-
-function typeText() {
-  if (j < mainText.length) {
-    document.getElementById("text").innerHTML += mainText.charAt(j);
-    j++;
-    setTimeout(typeText, 20);
-  } else {
-    document.getElementById("sign").style.opacity = 1;
-  }
-}
-
-typeTitle();
-</script>
+    <div class="signature">
+      Ваш Дима
+    </div>
+  </div>
 
 </body>
 </html>
